@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anna Texas Directory | Your Local Guide to Anna, TX</title>
+<meta name="description" content="The complete local guide to Anna, TX. Find businesses, schools, emergency contacts, events, parks, restaurants, and everything you need as an Anna resident.">
+<meta name="keywords" content="Anna TX, Anna Texas directory, Anna Texas businesses, Anna TX local guide, Collin County Texas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sage: #5C7A5C;
+    --sage-light: #8AAB8A;
+    --sage-pale: #EDF2ED;
+    --rust: #B85C38;
+    --rust-light: #F0EAE6;
+    --cream: #FAF8F4;
+    --ink: #1A1A1A;
+    --mid: #5A5A5A;
+    --border: #DDD8D0;
+    --white: #FFFFFF;
+    --gold: #C9962A;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--ink); }
+
+  /* NAV */
+  nav { background: var(--sage); padding: 0 24px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+  .nav-brand { color: white; font-family: 'DM Serif Display', serif; font-size: 1.4rem; padding: 14px 0; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+  .nav-brand span { font-size: 0.7rem; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.1em; background: var(--rust); padding: 2px 7px; border-radius: 3px; color: white; }
+  .nav-links { display: flex; gap: 6px; }
+  .nav-links a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.82rem; font-weight: 500; padding: 6px 10px; border-radius: 4px; transition: background 0.2s; }
+  .nav-links a:hover { background: rgba(255,255,255,0.15); color: white; }
+
+  /* HERO */
+  .hero { background: linear-gradient(135deg, var(--sage) 0%, #3D5C3D 60%, #2A3D2A 100%); color: white; padding: 60px 24px 50px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle at 20% 80%, rgba(201,150,42,0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255,255,255,0.05) 0%, transparent 50%); }
+  .hero-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; position: relative; }
+  .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.2rem, 5vw, 3.8rem); line-height: 1.1; margin-bottom: 14px; position: relative; }
+  .hero h1 em { color: var(--gold); font-style: normal; }
+  .hero-sub { font-size: 1rem; color: rgba(255,255,255,0.75); max-width: 520px; margin: 0 auto 28px; line-height: 1.6; position: relative; }
+  .hero-stats { display: flex; justify-content: center; gap: 40px; position: relative; }
+  .hero-stat { text-align: center; }
+  .hero-stat strong { display: block; font-family: 'DM Serif Display', serif; font-size: 2rem; color: var(--gold); }
+  .hero-stat span { font-size: 0.72rem; color: rgba(255,255,255,0.65); text-transform: uppercase; letter-spacing: 0.08em; }
+
+  /* WEATHER STRIP */
+  .weather-strip { background: var(--rust); color: white; padding: 12px 24px; display: flex; align-items: center; justify-content: center; gap: 32px; flex-wrap: wrap; font-size: 0.83rem; }
+  .weather-strip a { color: rgba(255,255,255,0.85); text-decoration: none; }
+  .weather-item { display: flex; align-items: center; gap: 6px; }
+  .weather-item .icon { font-size: 1.1rem; }
+
+  /* AD BANNER */
+  .ad-banner { background: #f0f0f0; border: 1px dashed #ccc; text-align: center; padding: 20px; font-size: 0.75rem; color: #999; letter-spacing: 0.05em; margin: 0; }
+
+  /* SEARCH */
+  .search-section { padding: 28px 24px; background: white; border-bottom: 1px solid var(--border); }
+  .search-wrap { max-width: 700px; margin: 0 auto; }
+  .search-label { font-size: 0.78rem; font-weight: 600; color: var(--mid); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+  .search-box { display: flex; border: 2px solid var(--sage); border-radius: 8px; overflow: hidden; }
+  .search-box input { flex: 1; padding: 13px 16px; font-size: 0.95rem; border: none; outline: none; font-family: 'Inter', sans-serif; }
+  .search-box button { background: var(--sage); color: white; border: none; padding: 13px 22px; font-weight: 600; cursor: pointer; font-size: 0.88rem; }
+  .search-tags { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+  .search-tags span { font-size: 0.75rem; color: var(--mid); }
+  .search-tags a { font-size: 0.75rem; background: var(--sage-pale); color: var(--sage); padding: 3px 10px; border-radius: 20px; text-decoration: none; }
+
+  /* MAIN LAYOUT */
+  .main { max-width: 1200px; margin: 0 auto; padding: 32px 24px; display: grid; grid-template-columns: 1fr 300px; gap: 28px; }
+  @media (max-width: 900px) { .main { grid-template-columns: 1fr; } .nav-links { display: none; } }
+
+  /* SECTIONS */
+  .section { margin-bottom: 32px; }
+  .section-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 2px solid var(--sage-pale); }
+  .section-header h2 { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--ink); }
+  .section-header .count { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--sage); background: var(--sage-pale); padding: 2px 8px; border-radius: 3px; }
+
+  /* CATEGORY GRID */
+  .cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
+  .cat-card { background: white; border: 1px solid var(--border); border-radius: 8px; padding: 16px 12px; text-align: center; text-decoration: none; color: var(--ink); transition: all 0.2s; }
+  .cat-card:hover { border-color: var(--sage); background: var(--sage-pale); transform: translateY(-2px); }
+  .cat-card .emoji { font-size: 1.8rem; display: block; margin-bottom: 6px; }
+  .cat-card .label { font-size: 0.78rem; font-weight: 600; }
+  .cat-card .count { font-size: 0.68rem; color: var(--mid); margin-top: 2px; }
+
+  /* BUSINESS LIST */
+  .biz-list { display: flex; flex-direction: column; gap: 10px; }
+  .biz-card { background: white; border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; display: flex; justify-content: space-between; align-items: flex-start; }
+  .biz-card:hover { border-color: var(--sage-light); }
+  .biz-info h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 3px; }
+  .biz-info .biz-cat { font-size: 0.72rem; color: var(--sage); font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; }
+  .biz-info .biz-addr { font-size: 0.78rem; color: var(--mid); margin-top: 4px; }
+  .biz-info .biz-phone { font-size: 0.82rem; color: var(--rust); font-weight: 500; margin-top: 3px; }
+  .biz-badge { font-size: 0.68rem; background: var(--sage-pale); color: var(--sage); padding: 3px 8px; border-radius: 10px; white-space: nowrap; font-weight: 600; }
+  .biz-badge.new { background: #FEF3C7; color: #92400E; }
+
+  /* INFO CARDS */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
+  .info-card { background: white; border: 1px solid var(--border); border-radius: 8px; padding: 18px; }
+  .info-card h3 { font-size: 0.9rem; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 7px; color: var(--sage); }
+  .info-card ul { list-style: none; }
+  .info-card ul li { padding: 5px 0; border-bottom: 1px solid var(--sage-pale); font-size: 0.82rem; display: flex; justify-content: space-between; }
+  .info-card ul li:last-child { border-bottom: none; }
+  .info-card ul li a { color: var(--rust); text-decoration: none; font-weight: 500; }
+  .info-card ul li a:hover { text-decoration: underline; }
+  .info-card .detail { color: var(--mid); font-size: 0.78rem; }
+
+  /* EMERGENCY BOX */
+  .emergency { background: #FEF2F2; border: 2px solid #FCA5A5; border-radius: 8px; padding: 18px; margin-bottom: 16px; }
+  .emergency h3 { color: #DC2626; font-size: 0.95rem; font-weight: 700; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+  .emergency-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .emerg-item { display: flex; flex-direction: column; }
+  .emerg-item .label { font-size: 0.68rem; color: #6B7280; text-transform: uppercase; letter-spacing: 0.06em; }
+  .emerg-item a { font-size: 1.1rem; font-weight: 700; color: #DC2626; text-decoration: none; font-family: 'JetBrains Mono', monospace; }
+
+  /* SIDEBAR */
+  .sidebar {}
+  .sidebar-card { background: white; border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-bottom: 16px; }
+  .sidebar-card h3 { font-size: 0.85rem; font-weight: 700; color: var(--sage); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 12px; }
+  .sidebar-card ul { list-style: none; }
+  .sidebar-card ul li { padding: 5px 0; font-size: 0.82rem; border-bottom: 1px solid var(--sage-pale); }
+  .sidebar-card ul li:last-child { border-bottom: none; }
+  .sidebar-card ul li a { color: var(--rust); text-decoration: none; }
+  .sidebar-card ul li a:hover { text-decoration: underline; }
+  .ad-sidebar { background: #f5f5f5; border: 1px dashed #ccc; text-align: center; padding: 40px 16px; font-size: 0.72rem; color: #aaa; border-radius: 8px; margin-bottom: 16px; }
+
+  /* EVENTS */
+  .event-list { display: flex; flex-direction: column; gap: 10px; }
+  .event-card { background: white; border: 1px solid var(--border); border-radius: 8px; padding: 14px; display: flex; gap: 14px; align-items: flex-start; }
+  .event-date { background: var(--sage); color: white; border-radius: 6px; padding: 8px 10px; text-align: center; min-width: 48px; }
+  .event-date .month { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; }
+  .event-date .day { font-size: 1.4rem; font-family: 'DM Serif Display', serif; line-height: 1; }
+  .event-info h4 { font-size: 0.88rem; font-weight: 600; margin-bottom: 3px; }
+  .event-info p { font-size: 0.78rem; color: var(--mid); line-height: 1.4; }
+
+  /* TABLE */
+  .data-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+  .data-table th { background: var(--sage-pale); color: var(--sage); text-align: left; padding: 8px 12px; font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+  .data-table td { padding: 8px 12px; border-bottom: 1px solid var(--border); }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:hover td { background: var(--cream); }
+  .data-table a { color: var(--rust); text-decoration: none; }
+  .data-table a:hover { text-decoration: underline; }
+
+  /* FOOTER */
+  footer { background: #1A1A1A; color: rgba(255,255,255,0.7); padding: 40px 24px 24px; margin-top: 40px; }
+  .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 28px; margin-bottom: 28px; }
+  .footer-col h4 { color: white; font-size: 0.85rem; font-weight: 600; margin-bottom: 12px; }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { padding: 3px 0; }
+  .footer-col ul li a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.8rem; }
+  .footer-col ul li a:hover { color: white; }
+  .footer-bottom { max-width: 1200px; margin: 0 auto; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 16px; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; flex-wrap: wrap; gap: 8px; }
+
+  .tag { display: inline-block; font-size: 0.68rem; padding: 2px 8px; border-radius: 10px; font-weight: 600; }
+  .tag-open { background: #D1FAE5; color: #065F46; }
+  .tag-closed { background: #FEE2E2; color: #991B1B; }
+  .tag-new { background: #FEF3C7; color: #92400E; }
+
+  .map-placeholder { background: var(--sage-pale); border: 1px solid var(--border); border-radius: 8px; height: 200px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--sage); font-size: 2rem; gap: 8px; }
+  .map-placeholder p { font-size: 0.8rem; color: var(--mid); }
+  .map-placeholder a { font-size: 0.8rem; color: var(--rust); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-brand">📍 Anna, TX <span>DIRECTORY</span></a>
+  <div class="nav-links">
+    <a href="#businesses">Businesses</a>
+    <a href="#essentials">Essentials</a>
+    <a href="#schools">Schools</a>
+    <a href="#events">Events</a>
+    <a href="#government">City Hall</a>
+    <a href="#parks">Parks</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-eyebrow">Collin County · North DFW Metroplex · 75409</div>
+  <h1>Your Complete Guide to<br><em>Anna, Texas</em></h1>
+  <p class="hero-sub">Everything Anna residents need — local businesses, schools, emergency contacts, city services, events, and more. Updated regularly.</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><strong>~28K</strong><span>Residents</span></div>
+    <div class="hero-stat"><strong>#3</strong><span>Fastest Growing TX City</span></div>
+    <div class="hero-stat"><strong>75409</strong><span>ZIP Code</span></div>
+    <div class="hero-stat"><strong>Collin Co.</strong><span>County</span></div>
+  </div>
+</div>
+
+<div class="weather-strip">
+  <div class="weather-item"><span class="icon">🌡️</span> Current weather: <a href="https://forecast.weather.gov/MapClick.php?CityName=Anna&state=TX" target="_blank">NWS Anna TX Forecast →</a></div>
+  <div class="weather-item"><span class="icon">📡</span> <a href="https://www.weather.gov/fwd/" target="_blank">Dallas/Fort Worth NWS</a></div>
+  <div class="weather-item"><span class="icon">⛈️</span> Storm alerts: <a href="https://www.weather.gov/alerts/tx" target="_blank">TX Weather Alerts</a></div>
+  <div class="weather-item"><span class="icon">🌊</span> <a href="https://www.ntxnews.com/" target="_blank">North TX Local News</a></div>
+</div>
+
+<div class="ad-banner">ADVERTISEMENT — 728×90 Leaderboard Ad Unit</div>
+
+<div class="search-section">
+  <div class="search-wrap">
+    <div class="search-label">Search Anna, TX</div>
+    <div class="search-box">
+      <input type="text" placeholder="Find a business, service, or resource in Anna...">
+      <button>Search</button>
+    </div>
+    <div class="search-tags">
+      <span>Popular:</span>
+      <a href="#restaurants">Restaurants</a>
+      <a href="#healthcare">Healthcare</a>
+      <a href="#schools">Schools</a>
+      <a href="#auto">Auto Repair</a>
+      <a href="#realestate">Real Estate</a>
+      <a href="#childcare">Childcare</a>
+      <a href="#contractors">Contractors</a>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+  <div class="content">
+
+    <!-- EMERGENCY -->
+    <div class="section" id="emergency">
+      <div class="emergency">
+        <h3>🚨 Emergency & Important Numbers</h3>
+        <div class="emergency-grid">
+          <div class="emerg-item"><span class="label">Emergency</span><a href="tel:911">911</a></div>
+          <div class="emerg-item"><span class="label">Anna Police (Non-Emergency)</span><a href="tel:9727786010">(972) 778-6010</a></div>
+          <div class="emerg-item"><span class="label">Anna Fire Dept</span><a href="tel:9727786011">(972) 778-6011</a></div>
+          <div class="emerg-item"><span class="label">Collin County Sheriff</span><a href="tel:9724243110">(972) 424-3110</a></div>
+          <div class="emerg-item"><span class="label">Poison Control</span><a href="tel:18002221222">1-800-222-1222</a></div>
+          <div class="emerg-item"><span class="label">Texas DPS</span><a href="tel:5124245700">(512) 424-5700</a></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BUSINESS CATEGORIES -->
+    <div class="section" id="businesses">
+      <div class="section-header">
+        <h2>Business Categories</h2>
+        <span class="count">Browse All</span>
+      </div>
+      <div class="cat-grid">
+        <a href="#restaurants" class="cat-card"><span class="emoji">🍔</span><div class="label">Restaurants</div><div class="count">Dining & Food</div></a>
+        <a href="#healthcare" class="cat-card"><span class="emoji">🏥</span><div class="label">Healthcare</div><div class="count">Doctors & Clinics</div></a>
+        <a href="#auto" class="cat-card"><span class="emoji">🔧</span><div class="label">Auto Repair</div><div class="count">Mechanics & Tires</div></a>
+        <a href="#realestate" class="cat-card"><span class="emoji">🏠</span><div class="label">Real Estate</div><div class="count">Buy, Sell, Rent</div></a>
+        <a href="#childcare" class="cat-card"><span class="emoji">👶</span><div class="label">Childcare</div><div class="count">Daycares & Preschools</div></a>
+        <a href="#contractors" class="cat-card"><span class="emoji">🔨</span><div class="label">Contractors</div><div class="count">Home Services</div></a>
+        <a href="#grocery" class="cat-card"><span class="emoji">🛒</span><div class="label">Grocery</div><div class="count">Food & Supplies</div></a>
+        <a href="#fitness" class="cat-card"><span class="emoji">💪</span><div class="label">Fitness</div><div class="count">Gyms & Wellness</div></a>
+        <a href="#beauty" class="cat-card"><span class="emoji">💅</span><div class="label">Beauty</div><div class="count">Salons & Spas</div></a>
+        <a href="#financial" class="cat-card"><span class="emoji">🏦</span><div class="label">Banking</div><div class="count">Banks & Insurance</div></a>
+        <a href="#pets" class="cat-card"><span class="emoji">🐾</span><div class="label">Pet Services</div><div class="count">Vets & Groomers</div></a>
+        <a href="#religion" class="cat-card"><span class="emoji">⛪</span><div class="label">Churches</div><div class="count">Faith Communities</div></a>
+      </div>
+    </div>
+
+    <!-- FEATURED BUSINESSES -->
+    <div class="section" id="restaurants">
+      <div class="section-header">
+        <h2>Restaurants & Dining</h2>
+        <span class="count">Anna, TX</span>
+      </div>
+      <div class="biz-list">
+        <div class="biz-card">
+          <div class="biz-info"><h3>Taco Villa</h3><div class="biz-cat">Mexican · Fast Food</div><div class="biz-addr">📍 306 S Powell Pkwy, Anna, TX 75409</div><div class="biz-phone">📞 (972) 924-5555</div></div>
+          <span class="biz-badge">$$</span>
+        </div>
+        <div class="biz-card">
+          <div class="biz-info"><h3>Whataburger</h3><div class="biz-cat">American · Fast Food</div><div class="biz-addr">📍 1101 N Powell Pkwy, Anna, TX 75409</div><div class="biz-phone">📞 (972) 924-6200</div></div>
+          <span class="biz-badge">$</span>
+        </div>
+        <div class="biz-card">
+          <div class="biz-info"><h3>Sonic Drive-In</h3><div class="biz-cat">American · Drive-In</div><div class="biz-addr">📍 707 N Powell Pkwy, Anna, TX 75409</div><div class="biz-phone">📞 (972) 924-0077</div></div>
+          <span class="biz-badge">$</span>
+        </div>
+        <div class="biz-card">
+          <div class="biz-info"><h3>Pizza Hut Anna</h3><div class="biz-cat">Pizza · Delivery</div><div class="biz-addr">📍 Powell Pkwy, Anna, TX 75409</div><div class="biz-phone">📞 (972) 924-5560</div></div>
+          <span class="biz-badge">$$</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ad-banner" style="margin: 16px 0; border-radius: 8px;">ADVERTISEMENT — 728×90 In-Content Ad Unit</div>
+
+    <!-- SCHOOLS -->
+    <div class="section" id="schools">
+      <div class="section-header">
+        <h2>Anna ISD Schools</h2>
+        <span class="count">Anna Independent School District</span>
+      </div>
+      <table class="data-table">
+        <thead><tr><th>School</th><th>Grades</th><th>Address</th><th>Phone</th></tr></thead>
+        <tbody>
+          <tr><td><a href="https://www.annaisd.org" target="_blank">Anna High School</a></td><td>9–12</td><td>1109 N Powell Pkwy</td><td><a href="tel:9729244025">(972) 924-4025</a></td></tr>
+          <tr><td><a href="https://www.annaisd.org" target="_blank">Anna Middle School</a></td><td>6–8</td><td>709 N Powell Pkwy</td><td><a href="tel:9729244035">(972) 924-4035</a></td></tr>
+          <tr><td><a href="https://www.annaisd.org" target="_blank">Judith Harlow Intermediate</a></td><td>4–5</td><td>400 S Sherley Ave</td><td><a href="tel:9729244045">(972) 924-4045</a></td></tr>
+          <tr><td><a href="https://www.annaisd.org" target="_blank">Slayter Creek Elementary</a></td><td>K–3</td><td>2800 Ferguson Pkwy</td><td><a href="tel:9729244055">(972) 924-4055</a></td></tr>
+          <tr><td><a href="https://www.annaisd.org" target="_blank">Coyote Creek Elementary</a></td><td>K–3</td><td>3400 Hackberry Dr</td><td><a href="tel:9729244060">(972) 924-4060</a></td></tr>
+        </tbody>
+      </table>
+      <div style="margin-top:10px; padding: 10px 12px; background: var(--sage-pale); border-radius: 6px; font-size: 0.8rem; color: var(--mid);">
+        📋 Anna ISD District Office: <a href="https://www.annaisd.org" target="_blank" style="color:var(--rust);">annaisd.org</a> · 501 S Sherley Ave, Anna TX · <a href="tel:9729244000" style="color:var(--rust);">(972) 924-4000</a>
+      </div>
+    </div>
+
+    <!-- HEALTHCARE -->
+    <div class="section" id="healthcare">
+      <div class="section-header">
+        <h2>Healthcare & Medical</h2>
+        <span class="count">Clinics, Urgent Care & Hospitals</span>
+      </div>
+      <div class="biz-list">
+        <div class="biz-card">
+          <div class="biz-info"><h3>Baylor Scott & White – McKinney</h3><div class="biz-cat">Hospital · Emergency Room</div><div class="biz-addr">📍 5252 W University Dr, McKinney (12 mi from Anna)</div><div class="biz-phone">📞 (469) 764-1000</div></div>
+          <span class="biz-badge">ER</span>
+        </div>
+        <div class="biz-card">
+          <div class="biz-info"><h3>UT Health East Texas Physicians – Anna</h3><div class="biz-cat">Primary Care · Family Medicine</div><div class="biz-addr">📍 100 N Powell Pkwy, Anna, TX 75409</div><div class="biz-phone">📞 (972) 924-5200</div></div>
+          <span class="biz-badge tag-open">Local Clinic</span>
+        </div>
+        <div class="biz-card">
+          <div class="biz-info"><h3>CareNow Urgent Care – McKinney</h3><div class="biz-cat">Urgent Care · Walk-In</div><div class="biz-addr">📍 US-75 N, McKinney (nearby)</div><div class="biz-phone">📞 (972) 542-2273</div></div>
+          <span class="biz-badge">Walk-In</span>
+        </div>
+        <div class="biz-card">
+          <div class="biz-info"><h3>Anna Family Dentistry</h3><div class="biz-cat">Dentist · General & Cosmetic</div><div class="biz-addr">📍 Powell Pkwy, Anna, TX 75409</div><div class="biz-phone">📞 (972) 924-8800</div></div>
+          <span class="biz-badge">Dentist</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ad-banner" style="margin: 16px 0; border-radius: 8px;">ADVERTISEMENT — 728×90 In-Content Ad Unit</div>
+
+    <!-- CITY GOVERNMENT -->
+    <div class="section" id="government">
+      <div class="section-header">
+        <h2>City of Anna Government</h2>
+        <span class="count">Services & Contacts</span>
+      </div>
+      <div class="info-grid">
+        <div class="info-card">
+          <h3>🏛️ City Hall</h3>
+          <ul>
+            <li><span>Address</span><span class="detail">120 W. 7th St, Anna TX 75409</span></li>
+            <li><span>Phone</span><a href="tel:9727786000">(972) 778-6000</a></li>
+            <li><span>Website</span><a href="https://www.annatexas.gov" target="_blank">annatexas.gov</a></li>
+            <li><span>Hours</span><span class="detail">Mon–Fri 8am–5pm</span></li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h3>💧 Utilities & Services</h3>
+          <ul>
+            <li><span>Water/Sewer</span><a href="tel:9727786000">(972) 778-6000</a></li>
+            <li><span>Trash/Recycling</span><a href="https://www.annatexas.gov" target="_blank">See City Site</a></li>
+            <li><span>Oncor Electric</span><a href="tel:8888336552">888-833-6552</a></li>
+            <li><span>Atmos Gas</span><a href="tel:8884862673">888-286-6700</a></li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h3>📋 Permits & Planning</h3>
+          <ul>
+            <li><span>Building Permits</span><a href="https://www.annatexas.gov" target="_blank">Online Portal</a></li>
+            <li><span>Planning & Zoning</span><a href="tel:9727786000">(972) 778-6000</a></li>
+            <li><span>Code Enforcement</span><a href="tel:9727786000">(972) 778-6000</a></li>
+            <li><span>Business License</span><a href="https://www.annatexas.gov" target="_blank">City Website</a></li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h3>📬 County Resources</h3>
+          <ul>
+            <li><span>Collin County</span><a href="https://www.collincountytx.gov" target="_blank">collincountytx.gov</a></li>
+            <li><span>Tax Assessor</span><a href="tel:9725487600">(972) 548-7600</a></li>
+            <li><span>Voter Registration</span><a href="https://www.collincountytx.gov" target="_blank">Register Online</a></li>
+            <li><span>County Library</span><a href="https://www.collincountytx.gov" target="_blank">McKinney Branch</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- EVENTS -->
+    <div class="section" id="events">
+      <div class="section-header">
+        <h2>Community Events & Calendar</h2>
+        <span class="count">2025–2026</span>
+      </div>
+      <div class="event-list">
+        <div class="event-card">
+          <div class="event-date"><div class="month">Jun</div><div class="day">14</div></div>
+          <div class="event-info"><h4>Anna ISD End-of-Year Celebration</h4><p>Community gathering celebrating the school year. Coyote Stadium · Free admission</p></div>
+        </div>
+        <div class="event-card">
+          <div class="event-date"><div class="month">Jul</div><div class="day">4</div></div>
+          <div class="event-info"><h4>Anna 4th of July Fireworks</h4><p>Annual Independence Day celebration at Slayter Creek Park with fireworks at dusk</p></div>
+        </div>
+        <div class="event-card">
+          <div class="event-date"><div class="month">Aug</div><div class="day">12</div></div>
+          <div class="event-info"><h4>Back-to-School Bash</h4><p>Anna ISD community event · School supply giveaways · Food trucks · Live music</p></div>
+        </div>
+        <div class="event-card">
+          <div class="event-date"><div class="month">Oct</div><div class="day">18</div></div>
+          <div class="event-info"><h4>Anna Fall Festival</h4><p>Downtown Anna pumpkin patch, food vendors, local artisans · Family friendly</p></div>
+        </div>
+        <div class="event-card">
+          <div class="event-date"><div class="month">Dec</div><div class="day">6</div></div>
+          <div class="event-info"><h4>Anna Christmas on the Square</h4><p>Holiday lighting ceremony, Santa visits, local vendors · Downtown Square</p></div>
+        </div>
+      </div>
+      <p style="margin-top:10px; font-size:0.78rem; color:var(--mid);">📋 Full calendar: <a href="https://www.annatexas.gov" target="_blank" style="color:var(--rust);">annatexas.gov/events</a> · <a href="https://www.greaterchamber.com" target="_blank" style="color:var(--rust);">Greater Anna Chamber of Commerce</a></p>
+    </div>
+
+    <!-- PARKS -->
+    <div class="section" id="parks">
+      <div class="section-header">
+        <h2>Parks & Recreation</h2>
+        <span class="count">Anna Parks & Trails</span>
+      </div>
+      <table class="data-table">
+        <thead><tr><th>Park / Facility</th><th>Features</th><th>Address</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Slayter Creek Park</strong></td><td>Playground, Splash Pad, Pavilion, Trails</td><td>3060 Ferguson Pkwy</td></tr>
+          <tr><td><strong>Anna Community Park</strong></td><td>Sports Fields, Picnic Areas, Walking Trail</td><td>Downtown Anna</td></tr>
+          <tr><td><strong>Sherley Heritage Park</strong></td><td>Historic Site, Picnic Areas, Open Space</td><td>S Sherley Ave</td></tr>
+          <tr><td><strong>Anna Sports Complex</strong></td><td>Baseball, Soccer, Football Fields</td><td>Powell Pkwy area</td></tr>
+          <tr><td><strong>Natural Dam Lake</strong></td><td>Fishing, Nature Trails (nearby)</td><td>Natural Dam Lake Rd</td></tr>
+        </tbody>
+      </table>
+      <div style="margin-top:10px; font-size:0.78rem; color:var(--mid);">Parks & Rec Dept: <a href="https://www.annatexas.gov" target="_blank" style="color:var(--rust);">annatexas.gov</a> · <a href="tel:9727786000" style="color:var(--rust);">(972) 778-6000</a></div>
+    </div>
+
+    <!-- REAL ESTATE -->
+    <div class="section" id="realestate">
+      <div class="section-header">
+        <h2>Real Estate & Housing</h2>
+        <span class="count">Anna TX Market</span>
+      </div>
+      <div class="info-grid">
+        <div class="info-card">
+          <h3>🏠 Market Snapshot</h3>
+          <ul>
+            <li><span>Median Home Price</span><span class="detail">~$345,000</span></li>
+            <li><span>Median Rent</span><span class="detail">~$1,950/mo</span></li>
+            <li><span>Property Tax Rate</span><span class="detail">~2.4% (est.)</span></li>
+            <li><span>Growth Rate</span><span class="detail">Top 5 TX cities</span></li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h3>🔗 Housing Resources</h3>
+          <ul>
+            <li><span>Zillow Anna</span><a href="https://www.zillow.com/anna-tx/" target="_blank">Search Homes</a></li>
+            <li><span>Realtor.com</span><a href="https://www.realtor.com/realestateandhomes-search/Anna_TX" target="_blank">Anna Listings</a></li>
+            <li><span>New Construction</span><a href="https://www.newhomesource.com" target="_blank">New Builds</a></li>
+            <li><span>CAD (Tax Records)</span><a href="https://www.collincad.org" target="_blank">Collin CAD</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <div class="ad-sidebar">ADVERTISEMENT<br>300×250<br>Display Ad Unit</div>
+
+    <div class="sidebar-card">
+      <h3>📌 Quick Links</h3>
+      <ul>
+        <li><a href="https://www.annatexas.gov" target="_blank">City of Anna Official Site</a></li>
+        <li><a href="https://www.annaisd.org" target="_blank">Anna ISD School District</a></li>
+        <li><a href="https://www.collincountytx.gov" target="_blank">Collin County Government</a></li>
+        <li><a href="https://www.txdot.gov" target="_blank">TxDOT – Road Conditions</a></li>
+        <li><a href="https://www.dps.texas.gov" target="_blank">Texas DPS – DMV</a></li>
+        <li><a href="https://www.sos.state.tx.us/elections/voter/" target="_blank">Voter Registration TX</a></li>
+        <li><a href="https://www.collincountytx.gov/tax_assessor/" target="_blank">Pay Property Tax</a></li>
+        <li><a href="https://www.usps.com" target="_blank">USPS – Anna Post Office</a></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-card">
+      <h3>🏫 Anna ISD Quick</h3>
+      <ul>
+        <li><a href="https://www.annaisd.org" target="_blank">District Website</a></li>
+        <li><a href="https://www.annaisd.org" target="_blank">School Calendar</a></li>
+        <li><a href="https://www.annaisd.org" target="_blank">Enroll a Student</a></li>
+        <li><a href="https://www.annaisd.org" target="_blank">Athletics Schedule</a></li>
+        <li><a href="https://www.annaisd.org" target="_blank">Bus Routes</a></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-card">
+      <h3>🗺️ Get Around Anna</h3>
+      <div class="map-placeholder">
+        🗺️
+        <p>Anna, TX 75409</p>
+        <a href="https://maps.google.com/?q=Anna,TX" target="_blank">Open in Google Maps →</a>
+      </div>
+    </div>
+
+    <div class="ad-sidebar">ADVERTISEMENT<br>300×600<br>Half-Page Ad Unit</div>
+
+    <div class="sidebar-card">
+      <h3>🚗 Commute & Transit</h3>
+      <ul>
+        <li><a href="https://www.dart.org" target="_blank">DART (Dallas Area Rapid Transit)</a></li>
+        <li><a href="https://www.ntta.org" target="_blank">NTTA – Toll Roads</a></li>
+        <li><a href="https://511tx.org" target="_blank">511 TX – Traffic Updates</a></li>
+        <li><a href="https://www.txdot.gov" target="_blank">TxDOT Road Conditions</a></li>
+        <li><a href="https://waze.com" target="_blank">Waze – Live Traffic</a></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-card">
+      <h3>📰 Local News</h3>
+      <ul>
+        <li><a href="https://www.ntxnews.com" target="_blank">North Texas News</a></li>
+        <li><a href="https://www.dallasnews.com" target="_blank">Dallas Morning News</a></li>
+        <li><a href="https://www.collincollegeintouchwithcommunity.com" target="_blank">Collin County Insider</a></li>
+        <li><a href="https://www.cbsdfw.com" target="_blank">CBS DFW Local</a></li>
+        <li><a href="https://www.nbcdfw.com" target="_blank">NBC DFW</a></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-card">
+      <h3>📦 Nearby Cities</h3>
+      <ul>
+        <li><a href="https://www.mckinneytexas.org" target="_blank">McKinney, TX (12 mi)</a></li>
+        <li><a href="#" target="_blank">Melissa, TX (4 mi)</a></li>
+        <li><a href="#" target="_blank">Van Alstyne, TX (8 mi)</a></li>
+        <li><a href="#" target="_blank">Celina, TX (11 mi)</a></li>
+        <li><a href="https://www.friscotexas.gov" target="_blank">Frisco, TX (22 mi)</a></li>
+      </ul>
+    </div>
+
+  </aside>
+</div><!-- /main -->
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4>Anna, TX Directory</h4>
+      <ul>
+        <li><a href="#businesses">Business Directory</a></li>
+        <li><a href="#restaurants">Restaurants</a></li>
+        <li><a href="#healthcare">Healthcare</a></li>
+        <li><a href="#schools">Schools</a></li>
+        <li><a href="#events">Events</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>City Resources</h4>
+      <ul>
+        <li><a href="https://www.annatexas.gov" target="_blank">City of Anna</a></li>
+        <li><a href="https://www.annaisd.org" target="_blank">Anna ISD</a></li>
+        <li><a href="#government">City Services</a></li>
+        <li><a href="#parks">Parks & Rec</a></li>
+        <li><a href="#emergency">Emergency Contacts</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Helpful Links</h4>
+      <ul>
+        <li><a href="https://www.collincountytx.gov" target="_blank">Collin County</a></li>
+        <li><a href="https://www.txdot.gov" target="_blank">Road Conditions</a></li>
+        <li><a href="#realestate">Real Estate</a></li>
+        <li><a href="https://www.dps.texas.gov" target="_blank">TX DMV / DPS</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Add Your Business</h4>
+      <ul>
+        <li><a href="#">Submit a Listing</a></li>
+        <li><a href="#">Advertise Here</a></li>
+        <li><a href="#">Update Your Info</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Anna TX Directory · annaTXdirectory.com</span>
+    <span>Independent local guide · Not affiliated with the City of Anna</span>
+  </div>
+</footer>
+
+</body>
+</html>
