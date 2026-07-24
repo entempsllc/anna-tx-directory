@@ -1,5 +1,3 @@
 User-agent: *
 Allow: /
-Disallow: /admin.html
-
 Sitemap: https://annatxdirectory.com/sitemap.xml
