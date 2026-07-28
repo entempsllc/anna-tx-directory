@@ -41,6 +41,14 @@ class SearchIdentityContract(unittest.TestCase):
                 self.assertIn('class="identity-notice"', html)
                 self.assertIn("not an official", html)
 
+    def test_sitemap_lastmod_matches_latest_public_page_release(self):
+        root = ET.parse(ROOT / "sitemap.xml").getroot()
+        entries = root.findall("{*}url")
+        self.assertEqual(6, len(entries))
+        for entry in entries:
+            with self.subTest(url=entry.findtext("{*}loc")):
+                self.assertEqual("2026-07-24", entry.findtext("{*}lastmod"))
+
     def test_admin_is_crawlable_noindex(self):
         admin = (ROOT / "admin.html").read_text(encoding="utf-8").lower()
         self.assertRegex(admin, r'<meta[^>]+name=["\']robots["\'][^>]+noindex')
